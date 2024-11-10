@@ -1,0 +1,30 @@
+src/
+├── main/
+│   └── java/
+│       └── com/
+│           └── example/
+│               └── propertymanagement/
+│                   ├── entity/
+│                   │   ├── Person.java
+│                   │   ├── Tenant.java
+│                   │   ├── Host.java
+│                   │   ├── Owner.java
+│                   │   ├── Property.java
+│                   │   ├── ResidentialProperty.java
+│                   │   ├── CommercialProperty.java
+│                   │   ├── RentalAgreement.java
+│                   │   └── Payment.java
+│                   ├── manager/
+│                   │   ├── RentalManager.java
+│                   │   └── RentalManagerImpl.java
+│                   ├── util/
+│                   │   ├── FileHandler.java
+│                   │   ├── InputValidator.java
+│                   │   └── UIHelper.java
+│                   └── PropertyManagementSystem.java
+└── resources/
+├── tenants.txt
+├── owners.txt
+├── hosts.txt
+├── properties.txt
+└── rental_agreements.txt

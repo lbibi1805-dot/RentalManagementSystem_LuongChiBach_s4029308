@@ -1,0 +1,5 @@
+H001,William Turner,0801234567,william.t@email.com,HOST123456
+H002,Mary Johnson,0812345678,mary.j@email.com,HOST234567
+H003,Peter Parker,0823456789,peter.p@email.com,HOST345678
+H004,Susan White,0834567890,susan.w@email.com,HOST456789
+H005,George Brown,0845678901,george.b@email.com,HOST567890
