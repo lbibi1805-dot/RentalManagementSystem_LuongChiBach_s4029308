@@ -1,5 +1,6 @@
 package propertymanagement.util;
 
+import propertymanagement.PropertyManagementSystem;
 import propertymanagement.entity.Payment;
 import propertymanagement.entity.Property;
 import propertymanagement.entity.RentalAgreement;
