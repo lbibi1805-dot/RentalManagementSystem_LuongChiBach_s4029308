@@ -65,7 +65,6 @@ public class PropertyManagementSystem {
         System.out.print("Enter your choice: ");
     }
 
-    // Tenant Management
     private void manageTenants() {
         while (true) {
             System.out.println("\n=== Tenant Management ===");
@@ -81,9 +80,7 @@ public class PropertyManagementSystem {
 
             switch (choice) {
                 case 1:
-                    Tenant newTenant = createTenant();
-                    rentalManager.addTenant(newTenant);
-                    System.out.println("Tenant added successfully!");
+                    createTenant();
                     break;
                 case 2:
                     updateTenant();
@@ -102,7 +99,6 @@ public class PropertyManagementSystem {
         }
     }
 
-    // Host Management
     private void manageHosts() {
         while (true) {
             System.out.println("\n=== Host Management ===");
@@ -118,9 +114,7 @@ public class PropertyManagementSystem {
 
             switch (choice) {
                 case 1:
-                    Host newHost = createHost();
-                    rentalManager.addHost(newHost);
-                    System.out.println("Host added successfully!");
+                    createHost();
                     break;
                 case 2:
                     updateHost();
@@ -139,7 +133,6 @@ public class PropertyManagementSystem {
         }
     }
 
-    // Owner Management
     private void manageOwners() {
         while (true) {
             System.out.println("\n=== Owner Management ===");
@@ -155,9 +148,7 @@ public class PropertyManagementSystem {
 
             switch (choice) {
                 case 1:
-                    Owner newOwner = createOwner();
-                    rentalManager.addOwner(newOwner);
-                    System.out.println("Owner added successfully!");
+                    createOwner();
                     break;
                 case 2:
                     updateOwner();
@@ -176,7 +167,6 @@ public class PropertyManagementSystem {
         }
     }
 
-    // Property Management
     private void manageProperties() {
         while (true) {
             System.out.println("\n=== Property Management ===");
@@ -193,11 +183,7 @@ public class PropertyManagementSystem {
 
             switch (choice) {
                 case 1:
-                    Property newProperty = createProperty();
-                    if (newProperty != null) {
-                        rentalManager.addProperty(newProperty);
-                        System.out.println("Property added successfully!");
-                    }
+                    createProperty();
                     break;
                 case 2:
                     updateProperty();
@@ -219,15 +205,14 @@ public class PropertyManagementSystem {
         }
     }
 
-    // Rental Agreement Management
     private void manageRentalAgreements() {
         while (true) {
             System.out.println("\n=== Rental Agreement Management ===");
-            System.out.println("1. Create Rental Agreement");
-            System.out.println("2. Update Rental Agreement");
-            System.out.println("3. Delete Rental Agreement");
-            System.out.println("4. View All Rental Agreements");
-            System.out.println("5. View Active Rental Agreements");
+            System.out.println("1. Create Agreement");
+            System.out.println("2. Update Agreement");
+            System.out.println("3. Delete Agreement");
+            System.out.println("4. View All Agreements");
+            System.out.println("5. View Active Agreements");
             System.out.println("6. Back to Main Menu");
             System.out.print("Enter your choice: ");
 
@@ -236,11 +221,7 @@ public class PropertyManagementSystem {
 
             switch (choice) {
                 case 1:
-                    RentalAgreement newAgreement = createRentalAgreement();
-                    if (newAgreement != null) {
-                        rentalManager.addRentalAgreement(newAgreement);
-                        System.out.println("Rental Agreement created successfully!");
-                    }
+                    createRentalAgreement();
                     break;
                 case 2:
                     updateRentalAgreement();
@@ -262,7 +243,6 @@ public class PropertyManagementSystem {
         }
     }
 
-    // Payment Management
     private void managePayments() {
         while (true) {
             System.out.println("\n=== Payment Management ===");
@@ -279,11 +259,7 @@ public class PropertyManagementSystem {
 
             switch (choice) {
                 case 1:
-                    Payment newPayment = createPayment();
-                    if (newPayment != null) {
-                        rentalManager.addPayment(newPayment);
-                        System.out.println("Payment recorded successfully!");
-                    }
+                    createPayment();
                     break;
                 case 2:
                     updatePayment();
@@ -306,7 +282,7 @@ public class PropertyManagementSystem {
     }
 
     // Helper methods for creating entities
-    private Tenant createTenant() {
+    private void createTenant() {
         System.out.println("\nEnter Tenant Details:");
         System.out.print("Name: ");
         String name = scanner.nextLine();
@@ -314,10 +290,13 @@ public class PropertyManagementSystem {
         String email = scanner.nextLine();
         System.out.print("Phone: ");
         String phone = scanner.nextLine();
-        return new Tenant(generateId(), name, email, phone);
+
+        Tenant tenant = new Tenant(generateId(), name, email, phone);
+        rentalManager.addTenant(tenant);
+        System.out.println("Tenant added successfully!");
     }
 
-    private Host createHost() {
+    private void createHost() {
         System.out.println("\nEnter Host Details:");
         System.out.print("Name: ");
         String name = scanner.nextLine();
@@ -325,10 +304,13 @@ public class PropertyManagementSystem {
         String email = scanner.nextLine();
         System.out.print("Phone: ");
         String phone = scanner.nextLine();
-        return new Host(generateId(), name, email, phone);
+
+        Host host = new Host(generateId(), name, email, phone);
+        rentalManager.addHost(host);
+        System.out.println("Host added successfully!");
     }
 
-    private Owner createOwner() {
+    private void createOwner() {
         System.out.println("\nEnter Owner Details:");
         System.out.print("Name: ");
         String name = scanner.nextLine();
@@ -336,10 +318,13 @@ public class PropertyManagementSystem {
         String email = scanner.nextLine();
         System.out.print("Phone: ");
         String phone = scanner.nextLine();
-        return new Owner(generateId(), name, email, phone);
+
+        Owner owner = new Owner(generateId(), name, email, phone);
+        rentalManager.addOwner(owner);
+        System.out.println("Owner added successfully!");
     }
 
-    private Property createProperty() {
+    private void createProperty() {
         System.out.println("\nEnter Property Details:");
         System.out.print("Address: ");
         String address = scanner.nextLine();
@@ -349,13 +334,15 @@ public class PropertyManagementSystem {
         Owner owner = rentalManager.getOwnerById(ownerId);
         if (owner == null) {
             System.out.println("Owner not found!");
-            return null;
+            return;
         }
 
-        return new Property(generateId(), address, Property.Status.AVAILABLE, owner);
+        Property property = new Property(generateId(), address, Property.Status.AVAILABLE, owner);
+        rentalManager.addProperty(property);
+        System.out.println("Property added successfully!");
     }
 
-    private RentalAgreement createRentalAgreement() {
+    private void createRentalAgreement() {
         System.out.println("\nEnter Rental Agreement Details:");
         System.out.print("Tenant ID: ");
         String tenantId = scanner.nextLine();
@@ -370,7 +357,7 @@ public class PropertyManagementSystem {
 
         if (tenant == null || property == null || host == null) {
             System.out.println("Invalid tenant, property, or host ID!");
-            return null;
+            return;
         }
 
         System.out.print("Start Date (dd/MM/yyyy): ");
@@ -381,10 +368,12 @@ public class PropertyManagementSystem {
         double monthlyRent = scanner.nextDouble();
         scanner.nextLine();
 
-        return new RentalAgreement(generateId(), tenant, property, host, startDate, endDate, monthlyRent);
+        RentalAgreement agreement = new RentalAgreement(generateId(), tenant, property, host, startDate, endDate, monthlyRent);
+        rentalManager.addRentalAgreement(agreement);
+        System.out.println("Rental Agreement created successfully!");
     }
 
-    private Payment createPayment() {
+    private void createPayment() {
         System.out.println("\nEnter Payment Details:");
         System.out.print("Rental Agreement ID: ");
         String agreementId = scanner.nextLine();
@@ -392,70 +381,29 @@ public class PropertyManagementSystem {
         RentalAgreement agreement = rentalManager.getRentalAgreementById(agreementId);
         if (agreement == null) {
             System.out.println("Rental Agreement not found!");
-            return null;
+            return;
         }
 
         System.out.print("Amount: ");
         double amount = scanner.nextDouble();
         scanner.nextLine();
 
-        return new Payment(generateId(), agreement, amount, new Date());
+        Payment payment = new Payment(generateId(), agreement, amount, new Date());
+        rentalManager.addPayment(payment);
+        System.out.println("Payment recorded successfully!");
     }
 
-    // Helper methods for updating entities
-    private void updateTenant() {
-        System.out.print("Enter tenant ID to update: ");
-        String id = scanner.nextLine();
-        Tenant tenant = rentalManager.getTenantById(id);
-        if (tenant == null) {
-            System.out.println("Tenant not found.");
-            return;
-        }
-
-        System.out.println("Enter new details (press enter to keep current value):");
-        System.out.print("Name (" + tenant.getName() + "): ");
-        String name = scanner.nextLine();
-        if (!name.isEmpty()) tenant.setName(name);
-
-        System.out.print("Email (" + tenant.getEmail() + "): ");
-        String email = scanner.nextLine();
-        if (!email.isEmpty()) tenant.setEmail(email);
-
-        System.out.print("Phone (" + tenant.getPhone() + "): ");
-        String phone = scanner.nextLine();
-        if (!phone.isEmpty()) tenant.setPhone(phone);
-
-        rentalManager.updateTenant(tenant);
-        System.out.println("Tenant updated successfully.");
+    // Helper methods
+    private String generateId() {
+        return String.valueOf(System.currentTimeMillis());
     }
 
-    // Similar update methods for other entities...
 
-    // Helper methods for deleting entities
-    private void deleteTenant() {
-        System.out.print("Enter tenant ID to delete: ");
-        String id = scanner.nextLine();
-        if (rentalManager.removeTenant(id)) {
-            System.out.println("Tenant deleted successfully.");
-        } else {
-            System.out.println("Failed to delete tenant. Tenant not found or has active agreements.");
-        }
+    // Main method
+    public static void main(String[] args) {
+        PropertyManagementSystem system = new PropertyManagementSystem();
+        system.start();
     }
+}
 
-    // Similar delete methods for other entities...
 
-    // Helper methods for viewing entities
-    private void viewAllTenants() {
-        List<Tenant> tenants = rentalManager.getAllTenants();
-        if (tenants.isEmpty()) {
-            System.out.println("No tenants found.");
-        } else {
-            System.out.println("\nAll Tenants:");
-            for (Tenant tenant : tenants) {
-                System.out.println(tenant);
-            }
-        }
-    }
-
-    private voi
-s

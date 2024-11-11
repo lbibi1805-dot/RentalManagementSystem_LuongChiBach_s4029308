@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * @author Your Name - Your Student ID
  */
-public class RentalManagerImpl implements RentalManager {
+public class RentalManagerImplementation implements RentalManager {
     private List<Tenant> tenants;
     private List<Host> hosts;
     private List<Owner> owners;
@@ -20,7 +20,7 @@ public class RentalManagerImpl implements RentalManager {
 
     private FileHandler fileHandler;
 
-    public RentalManagerImpl() {
+    public RentalManagerImplementation() {
         this.tenants = new ArrayList<>();
         this.hosts = new ArrayList<>();
         this.owners = new ArrayList<>();
