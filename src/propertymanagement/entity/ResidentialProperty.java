@@ -5,16 +5,14 @@ public class ResidentialProperty extends Property{
     private boolean hasGarden;
     private boolean allowsPets;
     private double area;
-    private boolean isRented;
 
     // Constructors:
-    public ResidentialProperty(int id, String address, Status status, Owner owner, int bedrooms, boolean hasGarden, boolean allowsPets, double area) {
-        super(id, address, status, owner);
+    public ResidentialProperty(int id, String address, Status status, int bedrooms, boolean hasGarden, boolean allowsPets, double area) {
+        super(id, address, status);
         this.bedrooms = bedrooms;
         this.hasGarden = hasGarden;
         this.allowsPets = allowsPets;
         this.area = area;
-        this.isRented = false;
     }
 
     // Setter and Getters:
@@ -30,9 +28,6 @@ public class ResidentialProperty extends Property{
     public double getArea() {
         return area;
     }
-    public boolean isRented() {
-        return isRented;
-    }
 
     public void setBedrooms(int bedrooms) {
         this.bedrooms = bedrooms;
@@ -46,9 +41,6 @@ public class ResidentialProperty extends Property{
     public void setArea(double area) {
         this.area = area;
     }
-    public void setRented(boolean rented) {
-        isRented = rented;
-    }
 
     @Override
     public String toString() {
@@ -60,8 +52,6 @@ public class ResidentialProperty extends Property{
                 ", bedrooms=" + bedrooms +
                 ", hasGarden=" + hasGarden +
                 ", allowsPets=" + allowsPets +
-                ", area=" + area +
-                ", isRented=" + isRented +
-                '}';
+                ", area=" + area;
     }
 }

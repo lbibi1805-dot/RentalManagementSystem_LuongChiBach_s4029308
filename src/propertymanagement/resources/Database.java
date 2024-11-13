@@ -12,9 +12,11 @@ public class Database {
     private List<Tenant> tenants = new ArrayList<>();
     private List<Host> hosts = new ArrayList<>();
     private List<Owner> owners = new ArrayList<>();
-    private List<Property> properties = new ArrayList<>();
+    private List<ResidentialProperty> residentialProperties = new ArrayList<>();
+    private List<CommercialProperty> commercialProperties = new ArrayList<>();
     private List<RentalAgreement> rentalAgreements = new ArrayList<>();
     private List<Payment> payments = new ArrayList<>();
+
     private String path = "src/propertymanagement/resources/";
 
     // ID tracking maps
@@ -81,6 +83,7 @@ public class Database {
     }
 
     // CURD operations:
+    // Fixed
     public boolean add(Object o) {
         if (o instanceof Tenant tenant && !tenants.contains(tenant)) {
             tenants.add(tenant);
@@ -91,9 +94,11 @@ public class Database {
         } else if (o instanceof Owner owner && !owners.contains(owner)) {
             owners.add(owner);
             return true;
-        } else if (o instanceof Property property && !properties.contains(property)) {
-            properties.add(property);
+        } else if (o instanceof ResidentialProperty residentialProperty && !residentialProperties.contains(residentialProperty)) {
+            residentialProperties.add(residentialProperty);
             return true;
+        } else if (o instanceof CommercialProperty cp && !commercialProperties.contains(cp)) {
+            commercialProperties.add(cp);
         } else if (o instanceof RentalAgreement agreement && !rentalAgreements.contains(agreement)) {
             rentalAgreements.add(agreement);
             return true;
@@ -104,6 +109,7 @@ public class Database {
         return false;
     }
 
+    // Fixed:
     public Object getByID(int id) {
         for (Tenant tenant : tenants) {
             if (tenant.getId() == id) return tenant;
@@ -114,8 +120,11 @@ public class Database {
         for (Owner owner : owners) {
             if (owner.getId() == id) return owner;
         }
-        for (Property property : properties) {
-            if (property.getId() == id) return property;
+        for (ResidentialProperty residentialProperty : residentialProperties) {
+            if (residentialProperty.getId() == id) return residentialProperty;
+        }
+        for (CommercialProperty commercialProperty : commercialProperties) {
+            if (commercialProperty.getId() == id) return commercialProperty;
         }
         for (RentalAgreement agreement : rentalAgreements) {
             if (agreement.getId() == id) return agreement;
@@ -126,6 +135,7 @@ public class Database {
         return null;
     }
 
+    //  Fixed
     public <T> List<T> getAll(Class<T> c) {
         if (c.equals(Tenant.class)) {
             return (List<T>) tenants;
@@ -133,8 +143,10 @@ public class Database {
             return (List<T>) hosts;
         } else if (c.equals(Owner.class)) {
             return (List<T>) owners;
-        } else if (c.equals(Property.class)) {
-            return (List<T>) properties;
+        } else if (c.equals(ResidentialProperty.class)) {
+            return (List<T>) residentialProperties;
+        } else if (c.equals(CommercialProperty.class)) {
+            return (List<T>) commercialProperties;
         } else if (c.equals(RentalAgreement.class)) {
             return (List<T>) rentalAgreements;
         } else if (c.equals(Payment.class)) {
@@ -143,6 +155,7 @@ public class Database {
         return null;
     }
 
+    // Fixed:
     public void update(Object o) {
         if (o instanceof Tenant tenant) {
             tenants.removeIf(t -> t.getId() == tenant.getId());
@@ -153,9 +166,12 @@ public class Database {
         } else if (o instanceof Owner owner) {
             owners.removeIf(m -> m.getId() == owner.getId());
             owners.add(owner);
-        } else if (o instanceof Property property) {
-            properties.removeIf(p -> p.getId() == property.getId());
-            properties.add(property);
+        } else if (o instanceof ResidentialProperty residentialProperty) {
+            residentialProperties.removeIf(p -> p.getId() == residentialProperty.getId());
+            residentialProperties.add(residentialProperty);
+        } else if (o instanceof CommercialProperty commercialProperty) {
+            commercialProperties.removeIf(p -> p.getId() == commercialProperty.getId());
+            commercialProperties.add(commercialProperty);
         } else if (o instanceof RentalAgreement agreement) {
             rentalAgreements.removeIf(ra -> ra.getId() == agreement.getId());
             rentalAgreements.add(agreement);
@@ -165,6 +181,8 @@ public class Database {
         }
     }
 
+    // Remove:
+    // Fixed
     public boolean remove(Object o) {
         if (o instanceof Tenant tenant) {
             return tenants.remove(tenant);
@@ -172,8 +190,10 @@ public class Database {
             return hosts.remove(host);
         } else if (o instanceof Owner owner) {
             return owners.remove(owner);
-        } else if (o instanceof Property property) {
-            return properties.remove(property);
+        } else if (o instanceof ResidentialProperty residentialProperty) {
+            return residentialProperties.remove(residentialProperty);
+        } else if (o instanceof CommercialProperty commercialProperty) {
+            return commercialProperties.remove(commercialProperty);
         } else if (o instanceof RentalAgreement agreement) {
             return rentalAgreements.remove(agreement);
         } else if (o instanceof Payment payment) {
