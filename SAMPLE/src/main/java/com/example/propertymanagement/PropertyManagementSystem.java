@@ -370,7 +370,7 @@ public class PropertyManagementSystem {
 
         RentalAgreement agreement = new RentalAgreement(generateId(), tenant, property, host, startDate, endDate, monthlyRent);
         rentalManager.addRentalAgreement(agreement);
-        System.out.println("Rental Agreement created successfully!");
+        System.out.println("Rental Agreement created successfulQly!");
     }
 
     private void createPayment() {

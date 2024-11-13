@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface RentalManager  {
     // Methods to add Entities:
-    void addTenant(Tenant tenant);
-    void addHost(Host host);
-    void addOwner(Owner owner);
-    void addProperty(Property property);
-    void addRentalAgreement(RentalAgreement agreement);
-    void addPayment(Payment payment);
+    boolean addTenant(Tenant tenant);
+    boolean addHost(Host host);
+    boolean addOwner(Owner owner);
+    boolean addProperty(Property property);
+    boolean addRentalAgreement(RentalAgreement agreement);
+    boolean addPayment(Payment payment);
 
     // Methods to get Entities by their ID:
     Tenant getTenantById(String id);
@@ -30,12 +30,12 @@ public interface RentalManager  {
     List<Payment> getAllPayments();
 
     // Methods to update the Entities:
-    void updateTenant(Tenant tenant);
-    void updateHost(Host host);
-    void updateOwner(Owner owner);
-    void updateProperty(Property property);
-    void updateRentalAgreement(RentalAgreement agreement);
-    void updatePayment(Payment payment);
+    boolean updateTenant(Tenant tenant);
+    boolean updateHost(Host host);
+    boolean updateOwner(Owner owner);
+    boolean updateProperty(Property property);
+    boolean updateRentalAgreement(RentalAgreement agreement);
+    boolean updatePayment(Payment payment);
 
     // Method to Remove Entities:
     boolean removeTenant(String id);
@@ -45,10 +45,4 @@ public interface RentalManager  {
     boolean removeRentalAgreement(String id);
     boolean removePayment(String id);
 
-    // Methods to getEntities by related Entities:
-    List<Property> getAvailableProperties();
-    List<RentalAgreement> getActiveRentalAgreements();
-    List<Payment> getPaymentsByTenant(String tenantId);
-    List<Property> getPropertiesByOwner(String ownerId);
-    List<RentalAgreement> getRentalAgreementsByHost(String hostId);
 }

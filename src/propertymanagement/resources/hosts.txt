@@ -1,5 +1,0 @@
-H001,Bach Luong,0989981805,william.t@email.com,HOST123456
-H002,Vu Tran,0902224042,mary.j@email.com,HOST234567
-H003,Peter Parker,0923456789,peter.p@email.com,HOST345678
-H004,Lam Dao,0912345678,susan.w@email.com,HOST456789
-H005, Khanh Quoc,0945678901,george.b@email.com,HOST567890
