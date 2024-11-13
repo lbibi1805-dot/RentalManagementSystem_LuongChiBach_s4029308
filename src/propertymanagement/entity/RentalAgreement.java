@@ -3,7 +3,7 @@ package propertymanagement.entity;
 import java.util.Date;
 
 public class RentalAgreement {
-    private String id;
+    private int id;
     private Property property;
     private Tenant tenant;
     private Host host;
@@ -12,7 +12,7 @@ public class RentalAgreement {
     private double monthlyRent;
     private boolean isActive;
 
-    public RentalAgreement(String id, Property property, Tenant tenant, Host host, Date startDate, Date endDate, double monthlyRent) {
+    public RentalAgreement(int id, Property property, Tenant tenant, Host host, Date startDate, Date endDate, double monthlyRent) {
         this.id = id;
         this.property = property;
         this.tenant = tenant;
@@ -24,10 +24,10 @@ public class RentalAgreement {
     }
 
     // Getters and Setters:
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public Property getProperty() {

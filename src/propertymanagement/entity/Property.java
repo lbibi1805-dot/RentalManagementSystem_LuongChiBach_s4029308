@@ -8,17 +8,17 @@ public class Property {
         AVAILABLE, RENTED, MAINTENANCE
     }
 
-    private String id;
+    private int id;
     private String address;
     private Status status;
     private Owner owner;
     private List<Host> managers;
 
-    public Property(String id, String address, Status status, Owner owner) {
+    public Property(int id, String address, Status status) {
         this.id = id;
         this.address = address;
         this.status = status;
-        this.owner = owner;
+        this.owner = null;
         this.managers = new ArrayList<>();
     }
 
@@ -31,7 +31,7 @@ public class Property {
     }
 
     // Getters and Setters:
-    public String getId() {
+    public int getId() {
         return id;
     }
     public String getAddress() {
@@ -47,7 +47,7 @@ public class Property {
         return new ArrayList<>(managers);
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public void setAddress(String address) {

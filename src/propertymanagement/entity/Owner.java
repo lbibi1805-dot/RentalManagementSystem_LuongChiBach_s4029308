@@ -8,7 +8,7 @@ public class Owner extends Person{
     private List<Property> ownedProperties;
 
     // Constructors:
-    public Owner(String id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
+    public Owner(int id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
         super(id, fullName, dateOfBirth, email, phoneNumber, idNumber);
         this.ownedProperties = new ArrayList<>();
     }

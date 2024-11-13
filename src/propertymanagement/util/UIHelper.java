@@ -36,6 +36,12 @@ public class UIHelper {
         // Prompt the user' input:
         System.out.println(">> Enter your choice: ");
     }
+    public static void AddRentalAgreements(){
+
+    }
+    public static void viewRentalAgreements(){
+
+    }
 
     // Date formatting Method:
     public static Date parseDate(String dateString) {

@@ -1,24 +1,36 @@
 package propertymanagement.manager;
 
+import propertymanagement.entity.RentalAgreement;
+import propertymanagement.resources.Database;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public interface RentalAgreementManager {
-    // Adding entities to Database's List
-    boolean add(Object o);
+public class RentalAgreementManager implements Manager {
+    Database db = new Database();
 
-    // Get entities by ID
-    Object getByID(String id);
+    public RentalAgreementManager(Database db) {
+        this.db = db;
+    }
 
-    // Get The List Of Entities:
-    List<?> getAll();
+    @Override
+    public void add() {
 
-    // Update the entities:
-    void update(Object o);
+    }
 
-    // Remove entities from list:
-    boolean remove(Object o);
+    @Override
+    public void remove() {
 
-    // List of expired Rental Agreement:
-    List<?> getExpiredRentalAgreements();
+    }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void displayAll() {
+
+    }
 }

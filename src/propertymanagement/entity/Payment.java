@@ -3,14 +3,14 @@ package propertymanagement.entity;
 import java.util.Date;
 
 public class Payment {
-    private String id;
+    private int id;
     private RentalAgreement rentalAgreement;
     private double amount;
     private Date paymentDate;
     private String paymentMethod;
 
     // Constructors:
-    public Payment(String id, RentalAgreement rentalAgreement, double amount, Date paymentDate, String paymentMethod) {
+    public Payment(int id, RentalAgreement rentalAgreement, double amount, Date paymentDate, String paymentMethod) {
         this.id = id;
         this.rentalAgreement = rentalAgreement;
         this.amount = amount;
@@ -19,10 +19,10 @@ public class Payment {
     }
 
     // Getters and Setters:
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public RentalAgreement getRentalAgreement() {

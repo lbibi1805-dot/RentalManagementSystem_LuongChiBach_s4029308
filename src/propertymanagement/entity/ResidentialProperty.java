@@ -8,7 +8,7 @@ public class ResidentialProperty extends Property{
     private boolean isRented;
 
     // Constructors:
-    public ResidentialProperty(String id, String address, Status status, Owner owner, int bedrooms, boolean hasGarden, boolean allowsPets, double area) {
+    public ResidentialProperty(int id, String address, Status status, Owner owner, int bedrooms, boolean hasGarden, boolean allowsPets, double area) {
         super(id, address, status, owner);
         this.bedrooms = bedrooms;
         this.hasGarden = hasGarden;

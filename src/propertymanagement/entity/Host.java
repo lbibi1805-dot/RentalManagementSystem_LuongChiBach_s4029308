@@ -10,7 +10,7 @@ public class Host extends Person {
     private List<Owner> associatedOwners;
 
     // Constructors:
-    public Host(String id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
+    public Host(int id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
         super(id, fullName, dateOfBirth, email, phoneNumber, idNumber);
         this.managedProperties = new ArrayList<>();
         this.rentalAgreements = new ArrayList<>();

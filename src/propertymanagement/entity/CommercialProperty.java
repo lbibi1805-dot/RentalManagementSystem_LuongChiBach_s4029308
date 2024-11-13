@@ -6,7 +6,7 @@ public class CommercialProperty extends Property{
     private double floorArea;
 
     // Constructors:
-    public CommercialProperty(String id, String address, Status status, Owner owner, String businessType, boolean hasParking, double floorArea) {
+    public CommercialProperty(int id, String address, Status status, Owner owner, String businessType, boolean hasParking, double floorArea) {
         super(id, address, status, owner);
         this.businessType = businessType;
         this.hasParking = hasParking;

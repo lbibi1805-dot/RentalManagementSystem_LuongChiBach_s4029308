@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Person {
 
-    private String id;
+    private int id;
     private String fullName;
     private Date dateOfBirth;
     private String email;
@@ -12,7 +12,7 @@ public class Person {
     private String idNumber;
 
     // ConstructorS:
-    public Person(String id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
+    public Person(int id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
         this.id = id;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
@@ -22,10 +22,10 @@ public class Person {
     }
 
     // Getters and Setters:
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getFullName() {
