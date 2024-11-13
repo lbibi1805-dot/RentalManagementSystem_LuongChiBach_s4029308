@@ -12,7 +12,7 @@ src/
 │                   │   ├── RentalAgreement.java
 │                   │   └── Payment.java
 │                   ├── manager/
-│                   │   ├── RentalManager.java
+│                   │   ├── RentalManager.interface
 │                   │   └── RentalManagerImpl.java
 │                   ├── util/
 │                   │   ├── FileHandler.java
