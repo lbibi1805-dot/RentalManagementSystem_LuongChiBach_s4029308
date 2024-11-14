@@ -71,7 +71,7 @@ public class ResidentialPropertyManager implements Manager {
 
         int ID = IDGenerator(ResidentialProperty.class);
         ResidentialProperty residentialProperty = new ResidentialProperty(ID, address, status, bedrooms, hasGarden, hasAllowPets, floorArea);
-        if (rp.add(residentialProperty)) System.out.println("Property added to database successfully.");
+        if (db.add(residentialProperty)) System.out.println("Property added to database successfully.");
         else System.out.println("Cannot add residential property to the database.");
     }
 

@@ -123,15 +123,15 @@ public class Database {
     public Object getByID(int id) {
         for (Tenant tenant : tenants) {
             if (tenant.getId() == id) return tenant;
-            else return null;
+            return null;
         }
         for (Host host : hosts) {
             if (host.getId() == id) return host;
-            else return null;
+            return null;
         }
         for (Owner owner : owners) {
             if (owner.getId() == id) return owner;
-            else return null;
+            return null;
         }
         for (ResidentialProperty residentialProperty : residentialProperties) {
             if (residentialProperty.getId() == id) return residentialProperty;
@@ -139,15 +139,15 @@ public class Database {
         }
         for (CommercialProperty commercialProperty : commercialProperties) {
             if (commercialProperty.getId() == id) return commercialProperty;
-            else return null;
+            return null;
         }
         for (RentalAgreement agreement : rentalAgreements) {
             if (agreement.getId() == id) return agreement;
-            else return null;
+            return null;
         }
         for (Payment payment : payments) {
             if (payment.getId() == id) return payment;
-            else return null;
+            return null;
         }
         return null;
     }

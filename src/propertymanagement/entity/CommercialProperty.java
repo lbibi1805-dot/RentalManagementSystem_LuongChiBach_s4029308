@@ -34,6 +34,7 @@ public class CommercialProperty extends Property{
         this.businessType = businessType;
     }
 
+
     @Override
     public String toString() {
         return "CommercialProperty{" +

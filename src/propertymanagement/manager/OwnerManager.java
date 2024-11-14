@@ -102,44 +102,4 @@ public class OwnerManager implements Manager{
         for (Owner o : owner) System.out.println(o);
     }
 
-    // Add Properties:
-    public void addCommercialPropertyToOwner() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter the Owner's ID you want to add Commercial Property: ");
-        int ownerId = sc.nextInt();
-        System.out.print("Enter commercial property's id: ");
-        int commId = sc.nextInt();
-
-        for (Owner o : owner) {
-            if (o.getId() == ownerId) {
-                for (CommercialProperty c : cp){
-                    if (c.getId() == commId) {
-                        o.addOwnedProperty(c);
-                        System.out.println("Added Commercial Property Successfully");
-                    }
-                }
-            }
-            else System.out.println("Cannot find owner.");
-        }
-    }
-    public void addResidentialProperties(){
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter the Owner's ID you want to add Residential Property: ");
-        int ownerId = sc.nextInt();
-        System.out.print("Enter Residential property's id: ");
-        int resId = sc.nextInt();
-        for (Owner o : owner) {
-            if (o.getId() == ownerId) {
-                for (ResidentialProperty r : rp){
-                    if (r.getId() == resId) {
-                        o.addOwnedProperty(r);
-                        System.out.println("Added Residential Property Successfully");
-                    }
-                }
-            }
-            else System.out.println("Cannot find owner.");
-        }
-    }
 }
