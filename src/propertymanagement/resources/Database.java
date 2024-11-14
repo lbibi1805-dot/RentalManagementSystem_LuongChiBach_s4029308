@@ -27,8 +27,7 @@ public class Database {
         commercialProperties = new ArrayList<>();
         rentalAgreements = new ArrayList<>();
         payments = new ArrayList<>();
-
-         loadData();
+        loadData();
     }
 
     // ID tracking maps
@@ -194,7 +193,7 @@ public class Database {
             System.out.println("Data loaded successfully");
 
         } catch (Exception e) {
-            System.out.println("Error loading data: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -213,7 +212,7 @@ public class Database {
 
             System.out.println("Data saved successfully");
         } catch (Exception e) {
-            System.out.println("Error saving data: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
