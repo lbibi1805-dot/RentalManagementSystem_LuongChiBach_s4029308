@@ -13,8 +13,6 @@ import static propertymanagement.resources.Database.IDGenerator;
 
 public class ResidentialPropertyManagement implements Manager {
     private Database db;
-    List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
-    List<Owner> o = db.getAll(Owner.class);
     List<Host> h = db.getAll(Host.class);
 
     public ResidentialPropertyManagement(Database db) {
@@ -24,6 +22,7 @@ public class ResidentialPropertyManagement implements Manager {
     @Override
     public void add() {
         Scanner sc = new Scanner(System.in);
+        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
 
         System.out.print("Enter the property's address: ");
         String address = sc.nextLine();
@@ -76,6 +75,7 @@ public class ResidentialPropertyManagement implements Manager {
     @Override
     public void remove() {
         Scanner sc = new Scanner(System.in);
+        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
 
         // Prompt the user to enter the ID property:
         System.out.print("Enter the property's ID that you want to remove: ");
@@ -92,8 +92,9 @@ public class ResidentialPropertyManagement implements Manager {
     @Override
     public void update() {
         Scanner sc = new Scanner(System.in);
+        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
 
-        System.out.print("Enter the id of the Residential Propertu you want to update: ");
+        System.out.print("Enter the id of the Residential Property you want to update: ");
         int id = sc.nextInt();
         sc.nextLine();
 
@@ -154,6 +155,7 @@ public class ResidentialPropertyManagement implements Manager {
 
     @Override
     public void displayAll() {
+        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
         for (ResidentialProperty r : rp) System.out.println(r);
     }
 

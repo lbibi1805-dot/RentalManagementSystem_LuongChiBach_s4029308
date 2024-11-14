@@ -18,6 +18,7 @@ public class OwnerManager implements Manager{
     List<CommercialProperty> cp = db.getAll(CommercialProperty.class);
     List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
 
+
     public OwnerManager(Database db) {
         this.db = db;
     }
@@ -125,6 +126,7 @@ public class OwnerManager implements Manager{
     }
     public void addResidentialProperties(){
         Scanner sc = new Scanner(System.in);
+
         System.out.print("Enter the Owner's ID you want to add Residential Property: ");
         int ownerId = sc.nextInt();
         System.out.print("Enter Residential property's id: ");
