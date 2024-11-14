@@ -2,11 +2,12 @@ package propertymanagement.entity;
 
 import propertymanagement.resources.Database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Host extends Person {
+public class Host extends Person implements Serializable {
     private List<Property> managedProperties;
     private List<RentalAgreement> rentalAgreements;
     private List<Owner> associatedOwners;

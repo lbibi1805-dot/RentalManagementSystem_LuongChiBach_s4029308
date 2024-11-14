@@ -1,8 +1,9 @@
 package propertymanagement.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Payment {
+public class Payment implements Serializable {
     private int id;
     private RentalAgreement rentalAgreement;
     private double amount;

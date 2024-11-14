@@ -1,10 +1,11 @@
 package propertymanagement.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Tenant extends Person {
+public class Tenant extends Person implements Serializable {
     private List<RentalAgreement> rentalAgreements;
     private List<Payment> payments;
 

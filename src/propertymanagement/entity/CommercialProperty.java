@@ -1,6 +1,8 @@
 package propertymanagement.entity;
 
-public class CommercialProperty extends Property{
+import java.io.Serializable;
+
+public class CommercialProperty extends Property implements Serializable {
     private String businessType;
     private boolean hasParking;
     private double floorArea;
