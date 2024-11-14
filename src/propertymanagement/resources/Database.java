@@ -28,7 +28,7 @@ public class Database {
         rentalAgreements = new ArrayList<>();
         payments = new ArrayList<>();
 
-        // loadData();
+         loadData();
     }
 
     // ID tracking maps
@@ -54,45 +54,166 @@ public class Database {
         uniqueIdMaps.put(Payment.class, new HashMap<>());
     }
 
+//    public void loadData(){
+//        try{
+//            File file = new File(path + "USER_DATA.ser");
+//            File file2 = new File(path + "USER_ID.SER");
+//
+//            if (file.length() == 0 || file2.length() == 0) return;
+//            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+//
+//            tenants = (List<Tenant>) in.readObject();
+//            hosts = (List<Host>) in.readObject();
+//            owners = (List<Owner>) in.readObject();
+//            residentialProperties = (List<ResidentialProperty>) in.readObject();
+//            commercialProperties = (List<CommercialProperty>) in.readObject();
+//            rentalAgreements = (List<RentalAgreement>) in.readObject();
+//            payments = (List<Payment>) in.readObject();
+//
+//            in.close();
+//
+//            ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(file2));
+//            PERSON_ID = (Map<Integer, Integer>) in2.readObject();
+//            PROPERTY_ID = (Map<Integer, Integer>) in2.readObject();
+//            PAYMENT_ID = (Map<Integer, Integer>) in2.readObject();
+//            AGREEMENT_ID = (Map<Integer, Integer> ) in2.readObject();
+//            in2.close();
+//
+//            System.out.println("Data loaded successfully");
+//
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
 
-    // Method to save object list to file
-    public void writeObjectListToFile(List<Object> list) {
-        if (list == null || list.isEmpty()) {
-            return;
+//    public void saveData(){
+//        try{
+//            File file = new File(path + "USER_DATA.ser");
+//            ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream(file));
+//            data.writeObject(hosts);
+//            data.writeObject(owners);
+//            data.writeObject(tenants);
+//            data.writeObject(rentalAgreements);
+//            data.writeObject(residentialProperties);
+//            data.writeObject(commercialProperties);
+//            data.writeObject(payments);
+//
+//            File file2 = new File(path + "USER_ID.SER");
+//            ObjectOutputStream ID = new ObjectOutputStream(new FileOutputStream(file2));
+//
+//            ID.writeObject(PERSON_ID);
+//            ID.writeObject(PROPERTY_ID);
+//            ID.writeObject(PAYMENT_ID);
+//            ID.writeObject(AGREEMENT_ID);
+//            ID.close();
+//            ID.flush();
+//
+//            System.out.println(">>Data saved successfully");
+//        } catch (Exception e) System.out.println(e);
+//    }
+
+
+
+
+
+
+//    @SuppressWarnings("unchecked")
+//    public void loadData() {
+//        try {
+//            File file = new File(path + "USER_DATA.ser");
+//            File file2 = new File(path + "USER_ID.SER");
+//
+//            if (file.length() > 0 && file2.length() > 0) {
+//                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+//                    tenants = (List<Tenant>) in.readObject();
+//                    hosts = (List<Host>) in.readObject();
+//                    owners = (List<Owner>) in.readObject();
+//                    residentialProperties = (List<ResidentialProperty>) in.readObject();
+//                    commercialProperties = (List<CommercialProperty>) in.readObject();
+//                    rentalAgreements = (List<RentalAgreement>) in.readObject();
+//                    payments = (List<Payment>) in.readObject();
+//                }
+//
+//                try (ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(file2))) {
+//                    Map<Class<?>, Integer> loadedCounters = (Map<Class<?>, Integer>) in2.readObject();
+//                    idCounters.putAll(loadedCounters);
+//
+//                    Map<Class<?>, Map<Integer, Integer>> loadedUniqueIds = (Map<Class<?>, Map<Integer, Integer>>) in2.readObject();
+//                    uniqueIdMaps.putAll(loadedUniqueIds);
+//                }
+//
+//                System.out.println("Data loaded successfully");
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Error loading data: " + e.getMessage());
+//        }
+//    }
+//
+//    public void saveData() {
+//        try {
+//            File file = new File(path + "USER_DATA.ser");
+//            try (ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream(file))) {
+//                data.writeObject(tenants);
+//                data.writeObject(hosts);
+//                data.writeObject(owners);
+//                data.writeObject(residentialProperties);
+//                data.writeObject(commercialProperties);
+//                data.writeObject(rentalAgreements);
+//                data.writeObject(payments);
+//            }
+//
+//            File file2 = new File(path + "USER_ID.SER");
+//            try (ObjectOutputStream idOut = new ObjectOutputStream(new FileOutputStream(file2))) {
+//                idOut.writeObject(idCounters);
+//                idOut.writeObject(uniqueIdMaps);
+//            }
+//
+//            System.out.println("Data saved successfully");
+//        } catch (Exception e) {
+//            System.out.println("Error saving data: " + e.getMessage());
+//        }
+//    }
+
+
+    public void loadData() {
+        try {
+            File file = new File(path + "USER_DATA.ser");
+
+            if (file.length() == 0) return;
+
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            tenants = (List<Tenant>) in.readObject();
+            hosts = (List<Host>) in.readObject();
+            owners = (List<Owner>) in.readObject();
+            residentialProperties = (List<ResidentialProperty>) in.readObject();
+            commercialProperties = (List<CommercialProperty>) in.readObject();
+            rentalAgreements = (List<RentalAgreement>) in.readObject();
+            payments = (List<Payment>) in.readObject();
+            in.close();
+
+            System.out.println("Data loaded successfully");
+
+        } catch (Exception e) {
+            System.out.println("Error loading data: " + e.getMessage());
         }
+    }
 
-        // Determine the file name based on the object type
-        String fileName = null;
+    // Save data to serialized file
+    public void saveData() {
+        try {
+            ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream(path + "USER_DATA.ser"));
+            data.writeObject(tenants);
+            data.writeObject(hosts);
+            data.writeObject(owners);
+            data.writeObject(residentialProperties);
+            data.writeObject(commercialProperties);
+            data.writeObject(rentalAgreements);
+            data.writeObject(payments);
+            data.close();
 
-        if (list.get(0) instanceof Tenant) {
-            fileName = "tenants.txt";
-        } else if (list.get(0) instanceof Host) {
-            fileName = "hosts.txt";
-        } else if (list.get(0) instanceof Owner) {
-            fileName = "owners.txt";
-        } else if (list.get(0) instanceof Property) {
-            fileName = "properties.txt";
-        } else if (list.get(0) instanceof RentalAgreement) {
-            fileName = "rentalAgreements.txt";
-        } else if (list.get(0) instanceof Payment) {
-            fileName = "payments.txt";
-        }
-
-        if (fileName == null) {
-            System.out.println("Unknown object type in list.");
-            return;
-        }
-
-        // Write to file
-        try (FileOutputStream fileOut = new FileOutputStream(path + fileName);
-             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-
-            // Write the list of objects to the file
-            out.writeObject(list);
-            System.out.println("Successfully saved " + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Failed to write objects to file: " + fileName);
+            System.out.println("Data saved successfully");
+        } catch (Exception e) {
+            System.out.println("Error saving data: " + e.getMessage());
         }
     }
 

@@ -79,6 +79,7 @@ public class TenantManager implements Manager {
         String phoneNumber = sc.nextLine();
 
         Tenant o = (Tenant) db.getByID(id);
+
         o.setFullName(name);
         o.setDateOfBirth(parseDate(dateOfBirth));
         o.setEmail(email);

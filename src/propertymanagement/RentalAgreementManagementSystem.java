@@ -256,7 +256,7 @@ public class RentalAgreementManagementSystem {
 
             }
         } while (choice != 0);
-        // db.saveData();
+         db.saveData();
 
     }
 
