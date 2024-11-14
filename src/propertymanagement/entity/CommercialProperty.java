@@ -17,30 +17,33 @@ public class CommercialProperty extends Property{
     public String getBusinessType() {
         return businessType;
     }
-    public double getFloorArea() {
-        return floorArea;
-    }
-    public boolean isHasParking() {
-        return hasParking;
-    }
-
-    public void setFloorArea(double floorArea) {
-        this.floorArea = floorArea;
-    }
-    public void setHasParking(boolean hasParking) {
-        this.hasParking = hasParking;
-    }
     public void setBusinessType(String businessType) {
         this.businessType = businessType;
     }
 
+    public boolean isHasParking() {
+        return hasParking;
+    }
+    public void setHasParking(boolean hasParking) {
+        this.hasParking = hasParking;
+    }
+
+    public double getFloorArea() {
+        return floorArea;
+    }
+    public void setFloorArea(double floorArea) {
+        this.floorArea = floorArea;
+    }
 
     @Override
     public String toString() {
         return "CommercialProperty{" +
-                "businessType='" + businessType + '\'' +
-                ", hasParking=" + hasParking +
-                ", floorArea=" + floorArea +
+                "id = " + getId() +
+                ", address = " + getAddress() +
+                ", businessType='" + getBusinessType() + '\'' +
+                ", status = " + getStatus() +
+                ", hasParking=" + isHasParking() +
+                ", floorArea=" + getFloorArea() +
                 '}';
     }
 }

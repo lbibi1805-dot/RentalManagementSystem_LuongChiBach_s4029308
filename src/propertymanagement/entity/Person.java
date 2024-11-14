@@ -9,16 +9,14 @@ public class Person {
     private Date dateOfBirth;
     private String email;
     private String phoneNumber;
-    private String idNumber;
 
     // ConstructorS:
-    public Person(int id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
+    public Person(int id, String fullName, Date dateOfBirth, String email, String phoneNumber) {
         this.id = id;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.idNumber = idNumber;
     }
 
     // Getters and Setters:
@@ -52,12 +50,6 @@ public class Person {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    public String getIdNumber() {
-        return idNumber;
-    }
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
-    }
 
     @Override
     public String toString() {
@@ -67,7 +59,6 @@ public class Person {
                 ", dateOfBirth=" + dateOfBirth +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", idNumber='" + idNumber + '\'' +
                 '}';
     }
 }

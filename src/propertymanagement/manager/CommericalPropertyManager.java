@@ -16,7 +16,7 @@ public class CommericalPropertyManager implements Manager{
 
     public CommericalPropertyManager(Database db) {
         this.db = db;
-        cp = new ArrayList<>();
+        cp = db.getAll(CommercialProperty.class);
     }
 
     @Override
@@ -62,8 +62,11 @@ public class CommericalPropertyManager implements Manager{
         int id = IDGenerator(CommercialProperty.class);
         CommercialProperty commercialProperty = new CommercialProperty(id, address, status, businessType, hasParkingSpace, floorArea);
 
-        if (db.add(commercialProperty)) System.out.println("Property added to database successfully.");
-        else System.out.println("Property added to the database failed.");
+        if (db.add(commercialProperty)) {
+            System.out.println("Property added to database successfully.");
+//            System.out.println(commercialProperty);
+        }
+        else System.out.println("Cannot add Commercial Property to database.");
     }
 
     @Override
@@ -110,6 +113,7 @@ public class CommericalPropertyManager implements Manager{
             System.out.println("Invalid status selected. Defaulting to AVAILABLE.");
             status = Property.Status.AVAILABLE; // Default case
         }
+        sc.nextLine();
 
         System.out.print("Enter the business type of the property: ");
         String businessType = sc.nextLine();
@@ -136,8 +140,8 @@ public class CommericalPropertyManager implements Manager{
 
     @Override
     public void displayAll() {
-        for (CommercialProperty commercialProperty : cp) {
-            System.out.println(commercialProperty);
+        for (CommercialProperty c : cp) {
+            System.out.println(c);
         }
     }
 }

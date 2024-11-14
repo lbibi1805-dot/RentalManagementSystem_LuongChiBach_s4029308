@@ -2,10 +2,8 @@ package propertymanagement;
 
 import propertymanagement.entity.CommercialProperty;
 import propertymanagement.entity.Host;
-import propertymanagement.manager.CommericalPropertyManager;
-import propertymanagement.manager.HostManager;
-import propertymanagement.manager.OwnerManager;
-import propertymanagement.manager.ResidentialPropertyManager;
+import propertymanagement.entity.Tenant;
+import propertymanagement.manager.*;
 import propertymanagement.resources.Database;
 
 import java.util.Scanner;
@@ -18,6 +16,7 @@ public class RentalAgreementManagementSystem {
         ResidentialPropertyManager rs = new ResidentialPropertyManager(db);
         CommericalPropertyManager cp = new CommericalPropertyManager(db);
         HostManager h = new HostManager(db);
+        TenantManager t = new TenantManager(db);
 
 
         int choice = 0;
@@ -29,7 +28,7 @@ public class RentalAgreementManagementSystem {
             System.out.println("3. Commercial Property Manager");
             System.out.println("4. Host Manager");
             System.out.println("5. Tenant Manager");
-            System.out.println("5. Rental Agreement Management");
+            System.out.println("6. Rental Agreement Management");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
@@ -113,7 +112,7 @@ public class RentalAgreementManagementSystem {
                         numberOfResidentials = sc.nextInt();
                         for (int i = 0; i < numberOfResidentials; i++){
                             System.out.println("Enter information for the " + (i + 1) + "st residential property");
-
+                            rs.update();
                         }
                     }
                     else if (choice_residential_property == 4){
@@ -166,8 +165,94 @@ public class RentalAgreementManagementSystem {
 
             }
             else if (choice == 4){
+                int choiceHost = 0;
+                do{
+                    System.out.println("1. Add Host");
+                    System.out.println("2. Remove Host");
+                    System.out.println("3. Edit Host");
+                    System.out.println("4. View All Host");
+                    System.out.println("0. Exit");
+                    System.out.print("Enter your choice: ");
+                    choiceHost = sc.nextInt();
 
-            } else if (choice == 5) {
+                    if (choiceHost == 1){
+                        int numberOfHosts;
+                        System.out.print("Enter the number of hosts you want to add: ");
+                        numberOfHosts = sc.nextInt();
+
+                        for (int i = 0; i < numberOfHosts; i++){
+                            System.out.println("Enter information for the " + (i + 1) + "st host");
+                            h.add();
+                        }
+                    }
+                    else if (choiceHost == 2){
+                        int numberOfHosts;
+                        System.out.print("Enter the number of hosts you want to remove: ");
+                        numberOfHosts = sc.nextInt();
+
+                        for (int i = 0; i < numberOfHosts; i++){
+                            System.out.println("Enter information for the " + (i + 1) + "st host");
+                            h.remove();
+                        }
+                    }
+                    else if (choiceHost == 3){
+                        int numberOfHosts;
+                        System.out.print("Enter the number of hosts you want to edit: ");
+                        numberOfHosts = sc.nextInt();
+
+                        for (int i = 0; i < numberOfHosts; i++){
+                            System.out.println("Enter information for the " + (i + 1) + "st host");
+                            h.update();
+                        }
+                    }
+                    else if (choiceHost == 4) {
+                        h.displayAll();
+                    }
+                } while (choice != 0);
+            }
+            else if (choice == 5) {
+                int choiceTenant = 0;
+                do {
+                    System.out.println("1. Add Tenant");
+                    System.out.println("2. Remove Tenant");
+                    System.out.println("3. Edit Tenant");
+                    System.out.println("4. View All Tenant");
+                    System.out.println("0. Exit");
+                    System.out.print("Enter your choice: ");
+                    choiceTenant = sc.nextInt();
+
+                    if (choiceTenant == 1){
+                        int numberOfTenants;
+                        System.out.print("Enter the number of tenants you want to add: ");
+                        numberOfTenants = sc.nextInt();
+                        for (int i = 0; i < numberOfTenants; i++){
+                            System.out.println("Enter information for the " + (i + 1) + "st tenant");
+                            t.add();
+                        }
+                    }
+                    else if (choiceTenant == 2){
+                        int numberOfTenants;
+                        System.out.print("Enter the number of tenants you want to remove: ");
+                        numberOfTenants = sc.nextInt();
+                        for (int i = 0; i < numberOfTenants; i++){
+                            System.out.println("Enter information for the " + (i + 1) + "st tenant");
+                            t.remove();
+                        }
+                    }
+                    else if (choiceTenant == 3){
+                        int numberOfTenants;
+                        System.out.print("Enter the number of tenants you want to edit: ");
+                        numberOfTenants = sc.nextInt();
+                        for (int i = 0; i < numberOfTenants; i++){
+                            t.update();
+                        }
+                    }
+                    else if (choiceTenant == 4){
+                        t.displayAll();
+                    }
+                } while (choiceTenant != 0);
+            }
+            else if (choice == 6){
 
             }
         } while (choice != 0);

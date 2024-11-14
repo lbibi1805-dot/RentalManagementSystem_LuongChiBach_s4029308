@@ -8,8 +8,8 @@ public class Tenant extends Person {
     private List<RentalAgreement> rentalAgreements;
     private List<Payment> payments;
 
-    public Tenant(int id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
-        super(id, fullName, dateOfBirth, email, phoneNumber, idNumber);
+    public Tenant(int id, String fullName, Date dateOfBirth, String email, String phoneNumber) {
+        super(id, fullName, dateOfBirth, email, phoneNumber);
         this.rentalAgreements = new ArrayList<>();
         this.payments = new ArrayList<>();
     }
@@ -54,7 +54,6 @@ public class Tenant extends Person {
                 ", dateOfBirth=" + getDateOfBirth() +
                 ", email='" + getEmail() + '\'' +
                 ", phoneNumber='" + getPhoneNumber() + '\'' +
-                ", idNumber='" + getIdNumber() + '\'' +
                 ", rentalAgreements=" + rentalAgreements.size() +
                 ", payments=" + payments.size() +
                 '}';

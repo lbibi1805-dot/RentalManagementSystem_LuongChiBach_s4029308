@@ -33,17 +33,18 @@ public class OwnerManager implements Manager{
         // Prompt the user to enter the Information of the owner:
         System.out.print("Enter owner's full name: ");
         String fullName = sc.nextLine();
+
         System.out.print("Enter owner Date of Birth (format: DD/MM/YYYY): ");
         String dateOfBirth = sc.nextLine();
+
         System.out.print("Enter owner's email: ");
         String email = sc.nextLine();
+
         System.out.print("Enter owner's phone number: ");
         String phoneNumber = sc.nextLine();
-        System.out.print("Enter owner's idNumber: ");
-        String idNumber = sc.nextLine();
 
         int ID = IDGenerator(Owner.class);
-        Owner o = new Owner(ID, fullName, parseDate(dateOfBirth), email, phoneNumber, idNumber);
+        Owner o = new Owner(ID, fullName, parseDate(dateOfBirth), email, phoneNumber);
         if(owner.add(o)) System.out.println("Added Owner to database Successfully");
         else System.out.println("Failed to add Owner to Database");
     }
@@ -84,16 +85,12 @@ public class OwnerManager implements Manager{
         System.out.print("Enter owner's phone number: ");
         String phoneNumber = sc.nextLine();
 
-        System.out.print("Enter owner's idNumber: ");
-        String idNumber = sc.nextLine();
-
         Owner o = (Owner) db.getByID(id);
         if (o != null){
             o.setFullName(fullName);
             o.setDateOfBirth(parseDate(dateOfBirth));
             o.setEmail(email);
             o.setPhoneNumber(phoneNumber);
-            o.setIdNumber(idNumber);
         } else System.out.println("Cannot find the owner");
     }
 

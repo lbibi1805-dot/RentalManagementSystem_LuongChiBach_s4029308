@@ -12,8 +12,8 @@ public class Host extends Person {
     private List<Owner> associatedOwners;
 
     // Constructors:
-    public Host(int id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
-        super(id, fullName, dateOfBirth, email, phoneNumber, idNumber);
+    public Host(int id, String fullName, Date dateOfBirth, String email, String phoneNumber) {
+        super(id, fullName, dateOfBirth, email, phoneNumber);
         this.managedProperties = new ArrayList<>();
         this.rentalAgreements = new ArrayList<>();
         this.associatedOwners = new ArrayList<>();
@@ -76,7 +76,6 @@ public class Host extends Person {
                 ", dateOfBirth=" + getDateOfBirth() +
                 ", email='" + getEmail() + '\'' +
                 ", phoneNumber='" + getPhoneNumber() + '\'' +
-                ", idNumber='" + getIdNumber() + '\'' +
                 ", managedProperties=" + managedProperties.size() +
                 ", rentalAgreements=" + rentalAgreements.size() +
                 ", associatedOwners=" + associatedOwners.size() +

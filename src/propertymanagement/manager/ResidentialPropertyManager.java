@@ -112,20 +112,25 @@ public class ResidentialPropertyManager implements Manager {
         // Set the status based on user input
         if (statusInput == 1) {
             status = Property.Status.AVAILABLE;
-        } else if (statusInput == 2) {
+        }
+        else if (statusInput == 2) {
             status = Property.Status.RENTED;
-        } else if (statusInput == 3) {
+        }
+        else if (statusInput == 3) {
             status = Property.Status.MAINTENANCE;
-        } else {
+        }
+        else {
             System.out.println("Invalid status selected. Defaulting to AVAILABLE.");
             status = Property.Status.AVAILABLE; // Default case
         }
 
-        System.out.println("Enter the number of bedrooms: ");
+        System.out.print("Enter the number of bedrooms: ");
         int bedrooms = sc.nextInt();
 
         System.out.print("Does the property has a garden (enter y for yes or n for no): ");
         String garden = sc.nextLine();
+        sc.nextLine();
+
         boolean hasGarden = false;
         if (garden.equalsIgnoreCase("y")) hasGarden = true;
         else if (garden.equalsIgnoreCase("n")) hasGarden = false;

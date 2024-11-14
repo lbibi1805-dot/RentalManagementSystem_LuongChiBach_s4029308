@@ -59,8 +59,9 @@ public class Database {
             return;
         }
 
-        // Determine the file based on the object type
+        // Determine the file name based on the object type
         String fileName = null;
+
         if (list.get(0) instanceof Tenant) {
             fileName = "tenants.txt";
         } else if (list.get(0) instanceof Host) {
@@ -80,6 +81,7 @@ public class Database {
             return;
         }
 
+        // Write to file
         try (FileOutputStream fileOut = new FileOutputStream(path + fileName);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
 
@@ -93,7 +95,6 @@ public class Database {
     }
 
     // CURD operations:
-    // Fixed
     public boolean add(Object o) {
         if (o instanceof Tenant tenant && !tenants.contains(tenant)) {
             tenants.add(tenant);
@@ -107,8 +108,9 @@ public class Database {
         } else if (o instanceof ResidentialProperty residentialProperty && !residentialProperties.contains(residentialProperty)) {
             residentialProperties.add(residentialProperty);
             return true;
-        } else if (o instanceof CommercialProperty cp && !commercialProperties.contains(cp)) {
-            commercialProperties.add(cp);
+        } else if (o instanceof CommercialProperty commercialProperty && !commercialProperties.contains(commercialProperty)) {
+            commercialProperties.add(commercialProperty);
+            return true;
         } else if (o instanceof RentalAgreement agreement && !rentalAgreements.contains(agreement)) {
             rentalAgreements.add(agreement);
             return true;
@@ -119,7 +121,6 @@ public class Database {
         return false;
     }
 
-    // Fixed:
     public Object getByID(int id) {
         for (Tenant tenant : tenants) {
             if (tenant.getId() == id) return tenant;
@@ -152,7 +153,6 @@ public class Database {
         return null;
     }
 
-    //  Fixed
     public <T> List<T> getAll(Class<T> c) {
         if (c.equals(Tenant.class)) {
             return (List<T>) tenants;
@@ -172,7 +172,6 @@ public class Database {
         return null;
     }
 
-    // Fixed:
     public void update(Object o) {
         if (o instanceof Tenant tenant) {
             tenants.removeIf(t -> t.getId() == tenant.getId());
@@ -198,8 +197,6 @@ public class Database {
         }
     }
 
-    // Remove:
-    // Fixed
     public boolean remove(Object o) {
         if (o instanceof Tenant tenant) {
             return tenants.remove(tenant);

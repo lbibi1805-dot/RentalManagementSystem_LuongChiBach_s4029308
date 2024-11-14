@@ -8,8 +8,8 @@ public class Owner extends Person{
     private List<Property> ownedProperties;
 
     // Constructors:
-    public Owner(int id, String fullName, Date dateOfBirth, String email, String phoneNumber, String idNumber) {
-        super(id, fullName, dateOfBirth, email, phoneNumber, idNumber);
+    public Owner(int id, String fullName, Date dateOfBirth, String email, String phoneNumber) {
+        super(id, fullName, dateOfBirth, email, phoneNumber);
         this.ownedProperties = new ArrayList<>();
     }
 
@@ -37,7 +37,6 @@ public class Owner extends Person{
                 ", dateOfBirth=" + getDateOfBirth() +
                 ", email='" + getEmail() + '\'' +
                 ", phoneNumber='" + getPhoneNumber() + '\'' +
-                ", idNumber='" + getIdNumber() + '\'' +
                 ", ownedProperties=" + ownedProperties.size() +
                 '}';
     }
