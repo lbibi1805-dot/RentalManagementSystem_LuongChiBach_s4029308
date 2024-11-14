@@ -1,9 +1,10 @@
 package propertymanagement.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Property {
+public class Property implements Serializable {
     public enum Status {
         AVAILABLE, RENTED, MAINTENANCE
     }

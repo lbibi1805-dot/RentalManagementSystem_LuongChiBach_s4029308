@@ -1,6 +1,8 @@
 package propertymanagement.entity;
 
-public class ResidentialProperty extends Property{
+import java.io.Serializable;
+
+public class ResidentialProperty extends Property implements Serializable {
     private int bedrooms;
     private boolean hasGarden;
     private boolean allowsPets;
