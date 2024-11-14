@@ -52,47 +52,56 @@ public class Database {
         uniqueIdMaps.put(Payment.class, new HashMap<>());
     }
 
-
-    // Method to save object list to file
-    public void writeObjectListToFile(List<Object> list) {
-        if (list == null || list.isEmpty()) {
-            return;
-        }
-
-        // Determine the file name based on the object type
-        String fileName = null;
-
-        if (list.get(0) instanceof Tenant) {
-            fileName = "tenants.txt";
-        } else if (list.get(0) instanceof Host) {
-            fileName = "hosts.txt";
-        } else if (list.get(0) instanceof Owner) {
-            fileName = "owners.txt";
-        } else if (list.get(0) instanceof Property) {
-            fileName = "properties.txt";
-        } else if (list.get(0) instanceof RentalAgreement) {
-            fileName = "rentalAgreements.txt";
-        } else if (list.get(0) instanceof Payment) {
-            fileName = "payments.txt";
-        }
-
-        if (fileName == null) {
-            System.out.println("Unknown object type in list.");
-            return;
-        }
-
-        // Write to file
+    // Method to write a list of objects to a file
+    private <T> void writeObjectListToFile(List<T> list, String fileName) {
         try (FileOutputStream fileOut = new FileOutputStream(path + fileName);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-
-            // Write the list of objects to the file
             out.writeObject(list);
             System.out.println("Successfully saved " + fileName);
         } catch (IOException e) {
+            System.out.println("Failed to save " + fileName);
             e.printStackTrace();
-            System.out.println("Failed to write objects to file: " + fileName);
         }
     }
+
+    // Method to read a list of objects from a file
+    private <T> List<T> readObjectListFromFile(String fileName, Class<T> type) {
+        List<T> list = new ArrayList<>();
+        try (FileInputStream fileIn = new FileInputStream(path + fileName);
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            list = (List<T>) in.readObject();
+            System.out.println("Successfully loaded " + fileName);
+        } catch (FileNotFoundException e) {
+            System.out.println(fileName + " not found. Creating a new list.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Failed to load " + fileName);
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    // Save all object lists to their respective files
+    public void saveAll() {
+        writeObjectListToFile(tenants, "tenants.txt");
+        writeObjectListToFile(hosts, "hosts.txt");
+        writeObjectListToFile(owners, "owners.txt");
+        writeObjectListToFile(residentialProperties, "residentialProperties.txt");
+        writeObjectListToFile(commercialProperties, "commercialProperties.txt");
+        writeObjectListToFile(rentalAgreements, "rentalAgreements.txt");
+        writeObjectListToFile(payments, "payments.txt");
+    }
+
+    // Load all object lists from their respective files
+    public void loadAll() {
+        tenants = readObjectListFromFile("tenants.txt", Tenant.class);
+        hosts = readObjectListFromFile("hosts.txt", Host.class);
+        owners = readObjectListFromFile("owners.txt", Owner.class);
+        residentialProperties = readObjectListFromFile("residentialProperties.txt", ResidentialProperty.class);
+        commercialProperties = readObjectListFromFile("commercialProperties.txt", CommercialProperty.class);
+        rentalAgreements = readObjectListFromFile("rentalAgreements.txt", RentalAgreement.class);
+        payments = readObjectListFromFile("payments.txt", Payment.class);
+    }
+
 
     // CURD operations:
     public boolean add(Object o) {
