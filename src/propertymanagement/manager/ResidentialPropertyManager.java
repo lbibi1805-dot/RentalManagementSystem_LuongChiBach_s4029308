@@ -1,7 +1,6 @@
 package propertymanagement.manager;
 
 import propertymanagement.entity.Host;
-import propertymanagement.entity.Owner;
 import propertymanagement.entity.Property;
 import propertymanagement.entity.ResidentialProperty;
 import propertymanagement.resources.Database;
@@ -11,18 +10,21 @@ import java.util.Scanner;
 
 import static propertymanagement.resources.Database.IDGenerator;
 
-public class ResidentialPropertyManagement implements Manager {
+public class ResidentialPropertyManager implements Manager {
     private Database db;
-    List<Host> h = db.getAll(Host.class);
+    List<Host> h;
+    List<ResidentialProperty> rp;
 
-    public ResidentialPropertyManagement(Database db) {
+
+    public ResidentialPropertyManager(Database db) {
         this.db = db;
+        rp = db.getAll(ResidentialProperty.class);
+        h = db.getAll(Host.class);
     }
 
     @Override
     public void add() {
         Scanner sc = new Scanner(System.in);
-        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
 
         System.out.print("Enter the property's address: ");
         String address = sc.nextLine();
@@ -46,9 +48,10 @@ public class ResidentialPropertyManagement implements Manager {
             status = Property.Status.AVAILABLE; // Default case
         }
 
-        System.out.println("Enter the number of bedrooms: ");
+        System.out.print("Enter the number of bedrooms: ");
         int bedrooms = sc.nextInt();
 
+        sc.nextLine();
         System.out.print("Does the property has a garden (enter y for yes or n for no): ");
         String garden = sc.nextLine();
         boolean hasGarden = false;
@@ -75,24 +78,22 @@ public class ResidentialPropertyManagement implements Manager {
     @Override
     public void remove() {
         Scanner sc = new Scanner(System.in);
-        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
 
         // Prompt the user to enter the ID property:
         System.out.print("Enter the property's ID that you want to remove: ");
-        int ID = sc.nextInt();
+        int id = sc.nextInt();
 
-        for (ResidentialProperty residentialProperty : rp) {
-            if (ID == residentialProperty.getId()) {
-                rp.remove(residentialProperty);
-                System.out.println("Property deleted successfully from database.");
-            }
+        ResidentialProperty r = (ResidentialProperty) db.getByID(id);
+        if (r != null) {
+            if (db.remove(r)) System.out.println("Removed residential property successfully");
+            else System.out.println("Cannot removed Residential Property");
         }
+        else System.out.println("Cannot find the Residential Property");
     }
 
     @Override
     public void update() {
         Scanner sc = new Scanner(System.in);
-        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
 
         System.out.print("Enter the id of the Residential Property you want to update: ");
         int id = sc.nextInt();
@@ -140,26 +141,17 @@ public class ResidentialPropertyManagement implements Manager {
         System.out.print("Enter the floor area of the residential property: ");
         double floorArea = sc.nextDouble();
 
-        for (ResidentialProperty residentialProperty : rp) {
-            if (residentialProperty.getId() == id) {
-                // Replace the old object with the new object
-                residentialProperty.setAddress(address);
-                residentialProperty.setStatus(status);
-                residentialProperty.setBedrooms(bedrooms);
-                residentialProperty.setHasGarden(hasGarden);
-                residentialProperty.setAllowsPets(hasAllowPets);
-                residentialProperty.setArea(floorArea);
-            }
-        }
+        ResidentialProperty r = (ResidentialProperty) db.getByID(id);
+        r.setAddress(address);
+        r.setStatus(status);
+        r.setBedrooms(bedrooms);
+        r.setHasGarden(hasGarden);
+        r.setAllowsPets(hasAllowPets);
+        r.setArea(floorArea);
     }
 
     @Override
     public void displayAll() {
-        List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
         for (ResidentialProperty r : rp) System.out.println(r);
     }
-
-    // Method to add owners:
-    public void addOwner() {}
-    public void addHost(){}
 }

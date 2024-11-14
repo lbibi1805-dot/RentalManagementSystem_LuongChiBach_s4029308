@@ -48,7 +48,7 @@ public class ResidentialProperty extends Property{
                 "id='" + getId() + '\'' +
                 ", address='" + getAddress() + '\'' +
                 ", status=" + getStatus() +
-                ", owner=" + getOwner().getFullName() +
+//                ", owner=" + getOwner().getFullName() +
                 ", bedrooms=" + bedrooms +
                 ", hasGarden=" + hasGarden +
                 ", allowsPets=" + allowsPets +

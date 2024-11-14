@@ -14,13 +14,16 @@ import static propertymanagement.util.UIHelper.parseDate;
 
 public class OwnerManager implements Manager{
     private Database db;
-    List<Owner> owner = db.getAll(Owner.class);
-    List<CommercialProperty> cp = db.getAll(CommercialProperty.class);
-    List<ResidentialProperty> rp = db.getAll(ResidentialProperty.class);
+    List<Owner> owner;
+    List<CommercialProperty> cp;
+    List<ResidentialProperty> rp;
 
 
     public OwnerManager(Database db) {
         this.db = db;
+        owner = db.getAll(Owner.class);
+        cp = db.getAll(CommercialProperty.class);
+        rp = db.getAll(ResidentialProperty.class);
     }
 
     @Override
@@ -53,12 +56,11 @@ public class OwnerManager implements Manager{
         System.out.print("Enter owner's id: ");
         int id = sc.nextInt();
 
-        for (Owner o : owner) {
-            if (o.getId() == id) {
-                owner.remove(o);
-                System.out.println("Owner deleted successfully from database");
-            }
-        }
+        Owner o = (Owner) db.getByID(id);
+        if (o != null){
+            if (db.remove(o)) System.out.println("Removed owner successfully");
+            else System.out.println("Cannot removed owner");
+        } else System.out.println("Cannot find the owner.");
     }
 
     @Override
@@ -85,17 +87,14 @@ public class OwnerManager implements Manager{
         System.out.print("Enter owner's idNumber: ");
         String idNumber = sc.nextLine();
 
-        for (Owner o : owner) {
-            if (o.getId() == id) {
-                // replace the old oject with the whole new object:
-                o.setFullName(fullName);
-                o.setDateOfBirth(parseDate(dateOfBirth));
-                o.setEmail(email);
-                o.setPhoneNumber(phoneNumber);
-                o.setIdNumber(idNumber);
-                break;
-            }
-        }
+        Owner o = (Owner) db.getByID(id);
+        if (o != null){
+            o.setFullName(fullName);
+            o.setDateOfBirth(parseDate(dateOfBirth));
+            o.setEmail(email);
+            o.setPhoneNumber(phoneNumber);
+            o.setIdNumber(idNumber);
+        } else System.out.println("Cannot find the owner");
     }
 
     @Override

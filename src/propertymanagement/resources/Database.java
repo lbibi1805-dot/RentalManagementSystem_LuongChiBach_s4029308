@@ -9,15 +9,25 @@ import java.util.List;
 import java.util.Map;
 
 public class Database {
-    private List<Tenant> tenants = new ArrayList<>();
-    private List<Host> hosts = new ArrayList<>();
-    private List<Owner> owners = new ArrayList<>();
-    private List<ResidentialProperty> residentialProperties = new ArrayList<>();
-    private List<CommercialProperty> commercialProperties = new ArrayList<>();
-    private List<RentalAgreement> rentalAgreements = new ArrayList<>();
-    private List<Payment> payments = new ArrayList<>();
+    private List<Tenant> tenants;
+    private List<Host> hosts ;
+    private List<Owner> owners ;
+    private List<ResidentialProperty> residentialProperties;
+    private List<CommercialProperty> commercialProperties ;
+    private List<RentalAgreement> rentalAgreements ;
+    private List<Payment> payments;
 
     private String path = "src/propertymanagement/resources/";
+
+    public Database() {
+        tenants = new ArrayList<>();
+        hosts = new ArrayList<>();
+        owners = new ArrayList<>();
+        residentialProperties = new ArrayList<>();
+        commercialProperties = new ArrayList<>();
+        rentalAgreements = new ArrayList<>();
+        payments = new ArrayList<>();
+    }
 
     // ID tracking maps
     private static final Map<Class<?>, Integer> idCounters = new HashMap<>();
@@ -113,24 +123,31 @@ public class Database {
     public Object getByID(int id) {
         for (Tenant tenant : tenants) {
             if (tenant.getId() == id) return tenant;
+            else return null;
         }
         for (Host host : hosts) {
             if (host.getId() == id) return host;
+            else return null;
         }
         for (Owner owner : owners) {
             if (owner.getId() == id) return owner;
+            else return null;
         }
         for (ResidentialProperty residentialProperty : residentialProperties) {
             if (residentialProperty.getId() == id) return residentialProperty;
+            else return null;
         }
         for (CommercialProperty commercialProperty : commercialProperties) {
             if (commercialProperty.getId() == id) return commercialProperty;
+            else return null;
         }
         for (RentalAgreement agreement : rentalAgreements) {
             if (agreement.getId() == id) return agreement;
+            else return null;
         }
         for (Payment payment : payments) {
             if (payment.getId() == id) return payment;
+            else return null;
         }
         return null;
     }
