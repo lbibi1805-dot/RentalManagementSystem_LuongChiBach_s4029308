@@ -89,8 +89,9 @@ public class CommericalPropertyManager implements Manager{
     @Override
     public void update() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the property's id you want to update: ");
+        System.out.print("Enter the property's id you want to update: ");
         int id = sc.nextInt();
+        sc.nextLine();
 
         System.out.print("Enter the property's address: ");
         String address = sc.nextLine();
