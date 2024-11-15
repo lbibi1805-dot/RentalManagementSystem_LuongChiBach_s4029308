@@ -1,9 +1,6 @@
 package propertymanagement.manager;
 
-import propertymanagement.entity.CommercialProperty;
-import propertymanagement.entity.Owner;
-import propertymanagement.entity.Property;
-import propertymanagement.entity.ResidentialProperty;
+import propertymanagement.entity.*;
 import propertymanagement.resources.Database;
 
 import java.util.List;
@@ -15,6 +12,7 @@ import static propertymanagement.util.UIHelper.parseDate;
 public class OwnerManager implements Manager{
     private Database db;
     List<Owner> owner;
+    List<Host> host;
     List<CommercialProperty> cp;
     List<ResidentialProperty> rp;
 
@@ -58,8 +56,24 @@ public class OwnerManager implements Manager{
         int id = sc.nextInt();
 
         Owner o = (Owner) db.getByID(id);
+
         if (o != null){
-            if (db.remove(o)) System.out.println("Removed owner successfully");
+            // Remove from other Relationships:
+            try {
+                for (CommercialProperty c : cp) if (c.getOwner().equals(o)) c.setOwner(null);
+                for (ResidentialProperty r : rp) if (r.getOwner().equals(o)) r.setOwner(null);
+                for (Host h : host) if (h.getAssociatedOwners().contains(o)) h.removeAssociatedOwner(o);
+                System.out.println("Remove from all relationships successfully");
+            }
+            catch (Exception e) {
+                System.err.println("Failed to remove Owner from Relationships");
+                e.printStackTrace();
+            }
+
+            // Remove from Database
+            if (db.remove(o)) {
+                System.out.println("Removed owner successfully from database");;
+            }
             else System.out.println("Cannot removed owner");
         } else System.out.println("Cannot find the owner.");
     }
@@ -99,6 +113,7 @@ public class OwnerManager implements Manager{
         for (Owner o : owner) System.out.println(o);
     }
 
+    // Other Features:
     public void addProperty() {
         Scanner sc = new Scanner(System.in);
         int choice = 0;

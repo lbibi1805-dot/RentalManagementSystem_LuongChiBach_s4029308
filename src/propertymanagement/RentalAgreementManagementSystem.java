@@ -26,6 +26,7 @@ public class RentalAgreementManagementSystem {
             systemMenu();
             choice = sc.nextInt();
 
+            // Owner
             if (choice == 1){
                 int choice_owner_manager = 0;
                 do {
@@ -79,6 +80,7 @@ public class RentalAgreementManagementSystem {
                 } while (choice_owner_manager != 0);
             }                                                       // Add Properties
 
+            // Residential Property
             else if (choice == 2){
                 int choice_residential_property = 0;
                 do {
@@ -123,6 +125,7 @@ public class RentalAgreementManagementSystem {
                 } while (choice_residential_property != 0);
             }                                                  // Need Implementations:
 
+            // Commercial Property
             else if (choice == 3){
                 int choice_commercial_property = 0;
                 do {
@@ -168,6 +171,7 @@ public class RentalAgreementManagementSystem {
 
             }                                                  // Need Implementations:
 
+            // Host
             else if (choice == 4){
                 int choiceHost = 0;
                 do{
@@ -176,8 +180,7 @@ public class RentalAgreementManagementSystem {
                     System.out.println("3. Edit Host");
                     System.out.println("4. View All Host");
                     System.out.println("5. Add Managed Properties");
-                    System.out.println("6. Add Rental Agreements");
-                    System.out.println("7. Add Rental Agreements");
+                    System.out.println("6. Remove Managed Properties");
                     System.out.println("0. Exit");
                     System.out.print("Enter your choice: ");
                     choiceHost = sc.nextInt();
@@ -216,17 +219,16 @@ public class RentalAgreementManagementSystem {
                         h.displayAll();
                     }
                     else if (choiceHost == 5) {
-                        // enter code here
+                        h.addManagedProperties();
                     }
                     else if (choiceHost == 6){
-                        // enter code here
+                        h.removeManagedProperties();
                     }
-                    else if (choiceHost == 7){
-                        // enter code here
-                    }
-                } while (choice != 0);
+
+                } while (choiceHost != 0);
             }                                                  // Need Implementations:
 
+            // Tenant
             else if (choice == 5) {
                 int choiceTenant = 0;
                 do {
@@ -283,6 +285,7 @@ public class RentalAgreementManagementSystem {
                 } while (choiceTenant != 0);
             }                                                 // Need Implementations:
 
+            // Rental Agreement
             else if (choice == 6){
                 System.out.println("Welcome to the Rental Agreement Management System");
                 System.out.println("1. Create Rental Agreement");
