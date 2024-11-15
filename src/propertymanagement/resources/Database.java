@@ -53,168 +53,63 @@ public class Database {
         uniqueIdMaps.put(Payment.class, new HashMap<>());
     }
 
-//    public void loadData(){
-//        try{
-//            File file = new File(path + "USER_DATA.ser");
-//            File file2 = new File(path + "USER_ID.SER");
-//
-//            if (file.length() == 0 || file2.length() == 0) return;
-//            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-//
-//            tenants = (List<Tenant>) in.readObject();
-//            hosts = (List<Host>) in.readObject();
-//            owners = (List<Owner>) in.readObject();
-//            residentialProperties = (List<ResidentialProperty>) in.readObject();
-//            commercialProperties = (List<CommercialProperty>) in.readObject();
-//            rentalAgreements = (List<RentalAgreement>) in.readObject();
-//            payments = (List<Payment>) in.readObject();
-//
-//            in.close();
-//
-//            ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(file2));
-//            PERSON_ID = (Map<Integer, Integer>) in2.readObject();
-//            PROPERTY_ID = (Map<Integer, Integer>) in2.readObject();
-//            PAYMENT_ID = (Map<Integer, Integer>) in2.readObject();
-//            AGREEMENT_ID = (Map<Integer, Integer> ) in2.readObject();
-//            in2.close();
-//
-//            System.out.println("Data loaded successfully");
-//
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
-
-//    public void saveData(){
-//        try{
-//            File file = new File(path + "USER_DATA.ser");
-//            ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream(file));
-//            data.writeObject(hosts);
-//            data.writeObject(owners);
-//            data.writeObject(tenants);
-//            data.writeObject(rentalAgreements);
-//            data.writeObject(residentialProperties);
-//            data.writeObject(commercialProperties);
-//            data.writeObject(payments);
-//
-//            File file2 = new File(path + "USER_ID.SER");
-//            ObjectOutputStream ID = new ObjectOutputStream(new FileOutputStream(file2));
-//
-//            ID.writeObject(PERSON_ID);
-//            ID.writeObject(PROPERTY_ID);
-//            ID.writeObject(PAYMENT_ID);
-//            ID.writeObject(AGREEMENT_ID);
-//            ID.close();
-//            ID.flush();
-//
-//            System.out.println(">>Data saved successfully");
-//        } catch (Exception e) System.out.println(e);
-//    }
-
-
-
-
-
-
-//    @SuppressWarnings("unchecked")
-//    public void loadData() {
-//        try {
-//            File file = new File(path + "USER_DATA.ser");
-//            File file2 = new File(path + "USER_ID.SER");
-//
-//            if (file.length() > 0 && file2.length() > 0) {
-//                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-//                    tenants = (List<Tenant>) in.readObject();
-//                    hosts = (List<Host>) in.readObject();
-//                    owners = (List<Owner>) in.readObject();
-//                    residentialProperties = (List<ResidentialProperty>) in.readObject();
-//                    commercialProperties = (List<CommercialProperty>) in.readObject();
-//                    rentalAgreements = (List<RentalAgreement>) in.readObject();
-//                    payments = (List<Payment>) in.readObject();
-//                }
-//
-//                try (ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(file2))) {
-//                    Map<Class<?>, Integer> loadedCounters = (Map<Class<?>, Integer>) in2.readObject();
-//                    idCounters.putAll(loadedCounters);
-//
-//                    Map<Class<?>, Map<Integer, Integer>> loadedUniqueIds = (Map<Class<?>, Map<Integer, Integer>>) in2.readObject();
-//                    uniqueIdMaps.putAll(loadedUniqueIds);
-//                }
-//
-//                System.out.println("Data loaded successfully");
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Error loading data: " + e.getMessage());
-//        }
-//    }
-//
-//    public void saveData() {
-//        try {
-//            File file = new File(path + "USER_DATA.ser");
-//            try (ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream(file))) {
-//                data.writeObject(tenants);
-//                data.writeObject(hosts);
-//                data.writeObject(owners);
-//                data.writeObject(residentialProperties);
-//                data.writeObject(commercialProperties);
-//                data.writeObject(rentalAgreements);
-//                data.writeObject(payments);
-//            }
-//
-//            File file2 = new File(path + "USER_ID.SER");
-//            try (ObjectOutputStream idOut = new ObjectOutputStream(new FileOutputStream(file2))) {
-//                idOut.writeObject(idCounters);
-//                idOut.writeObject(uniqueIdMaps);
-//            }
-//
-//            System.out.println("Data saved successfully");
-//        } catch (Exception e) {
-//            System.out.println("Error saving data: " + e.getMessage());
-//        }
-//    }
-
-
+    @SuppressWarnings("unchecked")
     public void loadData() {
         try {
             File file = new File(path + "USER_DATA.ser");
+            File file2 = new File(path + "USER_ID.SER");
 
-            if (file.length() == 0) return;
+            if (file.length() > 0 && file2.length() > 0) {
+                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+                    tenants = (List<Tenant>) in.readObject();
+                    hosts = (List<Host>) in.readObject();
+                    owners = (List<Owner>) in.readObject();
+                    residentialProperties = (List<ResidentialProperty>) in.readObject();
+                    commercialProperties = (List<CommercialProperty>) in.readObject();
+                    rentalAgreements = (List<RentalAgreement>) in.readObject();
+                    payments = (List<Payment>) in.readObject();
+                }
 
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-            tenants = (List<Tenant>) in.readObject();
-            hosts = (List<Host>) in.readObject();
-            owners = (List<Owner>) in.readObject();
-            residentialProperties = (List<ResidentialProperty>) in.readObject();
-            commercialProperties = (List<CommercialProperty>) in.readObject();
-            rentalAgreements = (List<RentalAgreement>) in.readObject();
-            payments = (List<Payment>) in.readObject();
-            in.close();
+                try (ObjectInputStream in2 = new ObjectInputStream(new FileInputStream(file2))) {
+                    Map<Class<?>, Integer> loadedCounters = (Map<Class<?>, Integer>) in2.readObject();
+                    idCounters.putAll(loadedCounters);
 
-            System.out.println("Data loaded successfully");
+                    Map<Class<?>, Map<Integer, Integer>> loadedUniqueIds = (Map<Class<?>, Map<Integer, Integer>>) in2.readObject();
+                    uniqueIdMaps.putAll(loadedUniqueIds);
+                }
 
+                System.out.println("Data loaded successfully");
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error loading data: " + e.getMessage());
         }
     }
 
-    // Save data to serialized file
     public void saveData() {
         try {
-            ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream(path + "USER_DATA.ser"));
-            data.writeObject(tenants);
-            data.writeObject(hosts);
-            data.writeObject(owners);
-            data.writeObject(residentialProperties);
-            data.writeObject(commercialProperties);
-            data.writeObject(rentalAgreements);
-            data.writeObject(payments);
-            data.close();
+            File file = new File(path + "USER_DATA.ser");
+            try (ObjectOutputStream data = new ObjectOutputStream(new FileOutputStream(file))) {
+                data.writeObject(tenants);
+                data.writeObject(hosts);
+                data.writeObject(owners);
+                data.writeObject(residentialProperties);
+                data.writeObject(commercialProperties);
+                data.writeObject(rentalAgreements);
+                data.writeObject(payments);
+            }
+
+            File file2 = new File(path + "USER_ID.SER");
+            try (ObjectOutputStream idOut = new ObjectOutputStream(new FileOutputStream(file2))) {
+                idOut.writeObject(idCounters);
+                idOut.writeObject(uniqueIdMaps);
+            }
 
             System.out.println("Data saved successfully");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error saving data: " + e.getMessage());
         }
     }
+
 
     // CURD operations:
     public boolean add(Object o) {
@@ -244,35 +139,36 @@ public class Database {
     }
 
     public Object getByID(int id) {
-        for (Tenant tenant : tenants) {
-            if (tenant.getId() == id) return tenant;
-            return null;
+        if (id >= 2000 && id < 3000) { // Tenant ID range
+            for (Tenant tenant : tenants) {
+                if (tenant.getId() == id) return tenant;
+            }
+        } else if (id >= 3000 && id < 4000) { // Host ID range
+            for (Host host : hosts) {
+                if (host.getId() == id) return host;
+            }
+        } else if (id >= 1000 && id < 2000) { // Owner ID range
+            for (Owner owner : owners) {
+                if (owner.getId() == id) return owner;
+            }
+        } else if (id >= 5000 && id < 6000) { // ResidentialProperty ID range
+            for (ResidentialProperty residentialProperty : residentialProperties) {
+                if (residentialProperty.getId() == id) return residentialProperty;
+            }
+        } else if (id >= 4000 && id < 5000) { // CommercialProperty ID range
+            for (CommercialProperty commercialProperty : commercialProperties) {
+                if (commercialProperty.getId() == id) return commercialProperty;
+            }
+        } else if (id >= 6000 && id < 7000) { // RentalAgreement ID range
+            for (RentalAgreement agreement : rentalAgreements) {
+                if (agreement.getId() == id) return agreement;
+            }
+        } else if (id >= 7000 && id < 8000) { // Payment ID range
+            for (Payment payment : payments) {
+                if (payment.getId() == id) return payment;
+            }
         }
-        for (Host host : hosts) {
-            if (host.getId() == id) return host;
-            return null;
-        }
-        for (Owner owner : owners) {
-            if (owner.getId() == id) return owner;
-            return null;
-        }
-        for (ResidentialProperty residentialProperty : residentialProperties) {
-            if (residentialProperty.getId() == id) return residentialProperty;
-            else return null;
-        }
-        for (CommercialProperty commercialProperty : commercialProperties) {
-            if (commercialProperty.getId() == id) return commercialProperty;
-            return null;
-        }
-        for (RentalAgreement agreement : rentalAgreements) {
-            if (agreement.getId() == id) return agreement;
-            return null;
-        }
-        for (Payment payment : payments) {
-            if (payment.getId() == id) return payment;
-            return null;
-        }
-        return null;
+        return null; // If no matching ID is found
     }
 
     public <T> List<T> getAll(Class<T> c) {

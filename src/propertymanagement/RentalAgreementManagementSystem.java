@@ -8,6 +8,8 @@ import propertymanagement.resources.Database;
 
 import java.util.Scanner;
 
+import static propertymanagement.util.UIDisplay.systemMenu;
+
 public class RentalAgreementManagementSystem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -18,19 +20,10 @@ public class RentalAgreementManagementSystem {
         HostManager h = new HostManager(db);
         TenantManager t = new TenantManager(db);
 
-
         int choice = 0;
+
         do{
-            System.out.println("Welcome to the Rental Agreement Management System!");
-            System.out.println("Choose Manger");
-            System.out.println("1. Owner Manager");
-            System.out.println("2. Residential Property Manager");
-            System.out.println("3. Commercial Property Manager");
-            System.out.println("4. Host Manager");
-            System.out.println("5. Tenant Manager");
-            System.out.println("6. Rental Agreement Management");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
+            systemMenu();
             choice = sc.nextInt();
 
             if (choice == 1){
@@ -40,6 +33,8 @@ public class RentalAgreementManagementSystem {
                     System.out.println("2. Remove Owner.");
                     System.out.println("3. Edit Owner.");
                     System.out.println("4. View All Owner.");
+                    System.out.println("5. Add Properties.");
+                    System.out.println("6. Remove owned Properties.");
                     System.out.println("0. Exit");
                     System.out.print("Enter your choice: ");
                     choice_owner_manager = sc.nextInt();
@@ -75,8 +70,15 @@ public class RentalAgreementManagementSystem {
                     else if (choice_owner_manager == 4){
                         om.displayAll();
                     }
+                    else if (choice_owner_manager == 5){
+                        om.addProperty();
+                    }
+                    else if (choice_owner_manager == 6){
+                        om.removeProperty();
+                    }
                 } while (choice_owner_manager != 0);
-            }
+            }                                                       // Add Properties
+
             else if (choice == 2){
                 int choice_residential_property = 0;
                 do {
@@ -119,7 +121,8 @@ public class RentalAgreementManagementSystem {
                         rs.displayAll();
                     }
                 } while (choice_residential_property != 0);
-            }
+            }                                                  // Need Implementations:
+
             else if (choice == 3){
                 int choice_commercial_property = 0;
                 do {
@@ -163,7 +166,8 @@ public class RentalAgreementManagementSystem {
                     }
                 } while (choice_commercial_property != 0);
 
-            }
+            }                                                  // Need Implementations:
+
             else if (choice == 4){
                 int choiceHost = 0;
                 do{
@@ -171,6 +175,9 @@ public class RentalAgreementManagementSystem {
                     System.out.println("2. Remove Host");
                     System.out.println("3. Edit Host");
                     System.out.println("4. View All Host");
+                    System.out.println("5. Add Managed Properties");
+                    System.out.println("6. Add Rental Agreements");
+                    System.out.println("7. Add Rental Agreements");
                     System.out.println("0. Exit");
                     System.out.print("Enter your choice: ");
                     choiceHost = sc.nextInt();
@@ -208,8 +215,18 @@ public class RentalAgreementManagementSystem {
                     else if (choiceHost == 4) {
                         h.displayAll();
                     }
+                    else if (choiceHost == 5) {
+                        // enter code here
+                    }
+                    else if (choiceHost == 6){
+                        // enter code here
+                    }
+                    else if (choiceHost == 7){
+                        // enter code here
+                    }
                 } while (choice != 0);
-            }
+            }                                                  // Need Implementations:
+
             else if (choice == 5) {
                 int choiceTenant = 0;
                 do {
@@ -217,6 +234,8 @@ public class RentalAgreementManagementSystem {
                     System.out.println("2. Remove Tenant");
                     System.out.println("3. Edit Tenant");
                     System.out.println("4. View All Tenant");
+                    System.out.println("5. Add Rental Agreement");
+                    System.out.println("6. Add Payment");
                     System.out.println("0. Exit");
                     System.out.print("Enter your choice: ");
                     choiceTenant = sc.nextInt();
@@ -230,6 +249,7 @@ public class RentalAgreementManagementSystem {
                             t.add();
                         }
                     }
+
                     else if (choiceTenant == 2){
                         int numberOfTenants;
                         System.out.print("Enter the number of tenants you want to remove: ");
@@ -239,6 +259,7 @@ public class RentalAgreementManagementSystem {
                             t.remove();
                         }
                     }
+
                     else if (choiceTenant == 3){
                         int numberOfTenants;
                         System.out.print("Enter the number of tenants you want to edit: ");
@@ -247,17 +268,82 @@ public class RentalAgreementManagementSystem {
                             t.update();
                         }
                     }
+
                     else if (choiceTenant == 4){
                         t.displayAll();
                     }
+
+                    else if (choiceTenant == 5){
+                        // Enter Code Here
+                    }
+
+                    else if (choiceTenant == 6){
+                        // Enter Code Here
+                    }
                 } while (choiceTenant != 0);
-            }
+            }                                                 // Need Implementations:
+
             else if (choice == 6){
+                System.out.println("Welcome to the Rental Agreement Management System");
+                System.out.println("1. Create Rental Agreement");
+                System.out.println("2. Edit Rental Agreement");
+                System.out.println("3. View Rental Agreements");
+                System.out.println("4. Add Rental Agreement");
+                System.out.println("5. Search Rental Agreement");
+                System.out.println("___________________________________________________");
+                System.out.println("6. View all Owners");
+                System.out.println("7. View all Hosts");
+                System.out.println("8. View all Tenants");
+                System.out.println("9. View all Payments");
+                System.out.println("10. View all Properties");
+                System.out.println("0. Exit");
 
-            }
+                int rentalAgreementChoice = sc.nextInt();
+
+                if (rentalAgreementChoice == 1){
+                    // Enter Code Here
+                }
+
+                else if (rentalAgreementChoice == 2){
+                    // Enter Your Code Here
+                }
+
+                else if (rentalAgreementChoice == 3){
+                    // Enter Your code Here
+                }
+
+                else if(rentalAgreementChoice == 4){
+                    // Enter Your Code Here
+                }
+
+                else if (rentalAgreementChoice == 5) {
+                    // Enter Your Code Here
+                }
+
+                else if (rentalAgreementChoice == 6) {
+                    // Enter Code Here
+                }
+
+                else if (rentalAgreementChoice == 7) {
+                    // Enter Code Here
+                }
+
+                else if (rentalAgreementChoice == 8) {
+                    // Enter COde Here
+                }
+
+                else if (rentalAgreementChoice == 9) {
+                    // Enter Code Here
+                }
+
+                else if (rentalAgreementChoice == 10) {
+                    // Enter Code Here
+                }
+            }                                                  // Need Implementations:
+
         } while (choice != 0);
-         db.saveData();
 
+         db.saveData();
     }
 
 }

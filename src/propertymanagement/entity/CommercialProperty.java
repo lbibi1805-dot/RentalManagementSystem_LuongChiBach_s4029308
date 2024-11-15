@@ -46,6 +46,7 @@ public class CommercialProperty extends Property implements Serializable {
                 ", status = " + getStatus() +
                 ", hasParking=" + isHasParking() +
                 ", floorArea=" + getFloorArea() +
+                ", owner=;" + getOwner() +
                 '}';
     }
 }

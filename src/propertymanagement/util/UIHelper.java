@@ -17,25 +17,6 @@ public class UIHelper {
         }
     }
 
-    // Display Methods:
-    public static void displayMainMenu(){
-        System.out.println("______________________________________________________");
-        System.out.println("         RENTAL AGREEMENT MANAGEMENT SYSTEM           ");
-        System.out.println("                                                v1.0.0");
-        System.out.println("                           Developed by Luong Chi Bach");
-        System.out.println("------------------------------------------------------");
-        System.out.println("------------------------MENU ------------------------_");
-        System.out.println("Please choose one option to continue");
-        System.out.println("1. Add Rental Agreements.");
-        System.out.println("2. View Rental Agreements.");
-        System.out.println("3. Update Rental Agreements' details.");
-        System.out.println("4. Remove Rental Agreements.");
-        System.out.println("5. Search Rental Agreements.");
-        System.out.println("0. Exit");
-        System.out.println("______________________________________________________");
-        // Prompt the user' input:
-        System.out.println(">> Enter your choice: ");
-    }
     public static void AddRentalAgreements(){
 
     }
