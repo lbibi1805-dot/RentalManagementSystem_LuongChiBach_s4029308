@@ -63,15 +63,12 @@ public class HostManager implements Manager{
         Host o = (Host) db.getByID(id);
 
         if (o != null) {
-            // Remove from other Relationships:
-            for (CommercialProperty c : cp) if(c.getManagers().contains(o)) cp.remove(c);
-            for (ResidentialProperty r : rp) if(r.getManagers().contains(o)) rp.remove(r);
             // Remove from database
             if (h.remove(o)) System.out.println("Host removed successfully from database");
             else System.out.println("Cannot remove host from database");
         }
         else System.out.println("Cannot find the host");
-    }                           // --> need fix logic
+    }
 
     @Override
     public void update() {
@@ -158,7 +155,9 @@ public class HostManager implements Manager{
                 } while (!checkProperty);
 
                 host.addManagedProperty(commercialProperty);                // Add Property to Host
-                host.addAssociatedOwner(commercialProperty.getOwner());     // Add associated Owner
+                if(!host.getAssociatedOwners().contains(commercialProperty.getOwner())){
+                    host.addAssociatedOwner(commercialProperty.getOwner());     // Add associated Owner
+                }
                 commercialProperty.addManager(host);                        // Add Host to Property
 
                 System.out.println("Added Successfully");
@@ -189,7 +188,9 @@ public class HostManager implements Manager{
 
                 // Display the properties managed by this Host:
                 System.out.println("Residential Property managed by this owner: ");
-                System.out.println(host.getManagedProperties());
+                if(!host.getAssociatedOwners().contains(residentialProperty.getOwner())){
+                    System.out.println(host.getManagedProperties());
+                }
                 System.out.println();
 
                 // Get the Property
